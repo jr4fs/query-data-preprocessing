@@ -1,0 +1,38 @@
+version: '3.7'
+x-volumes:
+  &volumes
+  - ./data:/data
+  - ./dags:/opt/airflow/dags
+  - ./airflow/logs:/opt/airflow/logs
+  
+x-env-variables: 
+  &env-variables
+  DATA_DIR: /data
+  AIRFLOW__CORE__SQL_ALCHEMY_CONN: sqlite:////data/airflow.db
+  CONN_ID: sqlite_db
+  CONN_HOST: /data/airflow.db
+
+services:
+  scheduler:
+    image: apache/airflow:1.10.12
+    restart: always
+    ports:
+      - '8793:8793'
+    volumes:
+      *volumes
+    command: scheduler
+    depends_on:
+      - server
+    environment:
+      <<: *env-variables
+
+  server:
+    build:
+      dockerfile: ./airflow/Dockerfile
+      context: .
+    ports:
+      - '8080:8080'
+    volumes:
+      *volumes
+    environment:
+      <<: *env-variables  

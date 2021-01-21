@@ -1,0 +1,1 @@
+An empty folder for logs to be saved in.
