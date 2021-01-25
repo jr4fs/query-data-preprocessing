@@ -113,7 +113,7 @@ def clean_data_df(tablename: str):
     
     # Check if there are duplicate search ids, these are the
         # entries that need to be dropped to remove duplicates
-    duplicate_search_id = df['search_id'].dupilcated().any()
+    duplicate_search_id = df['search_id'].duplicated().any()
     if (duplicate_search_id):
         df = df.drop_duplicates(subset=['search_id'])
     

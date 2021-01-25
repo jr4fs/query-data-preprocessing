@@ -1,0 +1,15 @@
+[2021-01-25 15:49:07,594] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.clean_data_search_request 2021-01-25T15:43:26.751393+00:00 [queued]>
+[2021-01-25 15:49:07,622] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.clean_data_search_request 2021-01-25T15:43:26.751393+00:00 [queued]>
+[2021-01-25 15:49:07,623] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 15:49:07,623] {taskinstance.py:881} INFO - Starting attempt 2 of 2
+[2021-01-25 15:49:07,624] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 15:49:07,659] {taskinstance.py:901} INFO - Executing <Task(PythonOperator): clean_data_search_request> on 2021-01-25T15:43:26.751393+00:00
+[2021-01-25 15:49:07,662] {standard_task_runner.py:54} INFO - Started process 48778 to run task
+[2021-01-25 15:49:07,687] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'clean_data', 'clean_data_search_request', '2021-01-25T15:43:26.751393+00:00', '--job_id', '13', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/data_clean.py', '--cfg_path', '/tmp/tmpwxu5pd7_']
+[2021-01-25 15:49:07,692] {standard_task_runner.py:78} INFO - Job 13: Subtask clean_data_search_request
+[2021-01-25 15:49:07,770] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: clean_data.clean_data_search_request 2021-01-25T15:43:26.751393+00:00 [running]> 3f8da9634a9c
+[2021-01-25 15:49:08,550] {python_operator.py:114} INFO - Done. Returned value was: None
+[2021-01-25 15:49:08,565] {taskinstance.py:1070} INFO - Marking task as SUCCESS.dag_id=clean_data, task_id=clean_data_search_request, execution_date=20210125T154326, start_date=20210125T154907, end_date=20210125T154908
+[2021-01-25 15:49:12,583] {local_task_job.py:102} INFO - Task exited with return code 0
