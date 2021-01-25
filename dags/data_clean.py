@@ -124,7 +124,7 @@ def clean_data_df(tablename: str):
     df['ts'] = pd.to_datetime(df['ts'])
 
     # Ensure all click data has a corresponding search request
-    if ((tablename) == 'search_result_interaction'):
+    if (tablename == 'search_result_interaction'):
         search_request_df = pd.read_sql(f"select * from {'search_request'}", con)
         
         # Drop search_result_interaction entries that don't have corresponding search_id
@@ -143,17 +143,16 @@ def clean_data_df(tablename: str):
         if(len(search_request_ids) > len(ids_intersect)):
             logging.info("There were more search requests than clicked on data")
 
-    # Display columns in each dataframe
-    cols_cleaned = list(df.columns)
-    cols_str = ' ,'.join(str(column) for column in cols_cleaned)
-    #logging.info("Columns: ", str(cols_str))
+    
     
     # Check if there are any duplicate entries
     if (df.duplicated().any()):
         logging.error("There are duplicate entries")
     else:
         logging.info("There are no duplicate entries")
+    
     # Check if original columns are in tact
+    cols_cleaned = list(df.columns)
     cols_intersect = [value for value in cols_before if value in cols_cleaned]
     if (len(cols_intersect) != len(cols_before)):
         logging.error("Original columns are not in tact")
