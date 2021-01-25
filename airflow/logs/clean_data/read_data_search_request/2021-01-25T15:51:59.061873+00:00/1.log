@@ -1,0 +1,23 @@
+[2021-01-25 15:52:14,731] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.read_data_search_request 2021-01-25T15:51:59.061873+00:00 [queued]>
+[2021-01-25 15:52:14,767] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.read_data_search_request 2021-01-25T15:51:59.061873+00:00 [queued]>
+[2021-01-25 15:52:14,768] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 15:52:14,768] {taskinstance.py:881} INFO - Starting attempt 1 of 2
+[2021-01-25 15:52:14,769] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 15:52:14,807] {taskinstance.py:901} INFO - Executing <Task(SqliteOperator): read_data_search_request> on 2021-01-25T15:51:59.061873+00:00
+[2021-01-25 15:52:14,811] {standard_task_runner.py:54} INFO - Started process 48879 to run task
+[2021-01-25 15:52:14,851] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'clean_data', 'read_data_search_request', '2021-01-25T15:51:59.061873+00:00', '--job_id', '16', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/data_clean.py', '--cfg_path', '/tmp/tmpes4taw60']
+[2021-01-25 15:52:14,855] {standard_task_runner.py:78} INFO - Job 16: Subtask read_data_search_request
+[2021-01-25 15:52:14,935] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: clean_data.read_data_search_request 2021-01-25T15:51:59.061873+00:00 [running]> 3f8da9634a9c
+[2021-01-25 15:52:14,981] {sqlite_operator.py:52} INFO - Executing: 
+        select count(*)
+        from search_request
+    
+[2021-01-25 15:52:15,000] {base_hook.py:89} INFO - Using connection to: id: sqlite_db. Host: /data/airflow.db, Port: None, Schema: None, Login: None, Password: None, extra: None
+[2021-01-25 15:52:15,005] {dbapi_hook.py:171} INFO - 
+        select count(*)
+        from search_request
+     with parameters []
+[2021-01-25 15:52:15,036] {taskinstance.py:1070} INFO - Marking task as SUCCESS.dag_id=clean_data, task_id=read_data_search_request, execution_date=20210125T155159, start_date=20210125T155214, end_date=20210125T155215
+[2021-01-25 15:52:19,700] {local_task_job.py:102} INFO - Task exited with return code 0

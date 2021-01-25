@@ -127,6 +127,7 @@ def clean_data_df(tablename: str):
         df = pd.merge(search_request_df, df, on='search_id')
     
     # Replace the table with a cleaned version
+    print(df)
     df.to_sql(f'clean_{tablename}', con, if_exists='replace', index=False)
         
 for table in tables:
