@@ -17,6 +17,7 @@ from airflow import settings
 import pandas as pd
 import sqlite3
 import os
+import logging
 
 # [START default_args]
 default_args = {
@@ -71,6 +72,7 @@ def load_data():
             df = pd.read_csv(filename)
             df.to_sql(table, con, if_exists='replace', index=False)
         else:
+            logging.error("Filename does not exist")
             raise Exception(f'{filename} does not exist')
 
 load_data = PythonOperator(
@@ -110,7 +112,8 @@ def clean_data_df(tablename: str):
     # Drop "Unnamed" columns
     junk_columns = df.columns[df.columns.str.startswith('Unnamed')]
     df = df.drop(junk_columns, axis=1)
-    
+    cols_before = list(df.columns)
+
     # Check if there are duplicate search ids, these are the
         # entries that need to be dropped to remove duplicates
     duplicate_search_id = df['search_id'].duplicated().any()
@@ -121,13 +124,36 @@ def clean_data_df(tablename: str):
     df['ts'] = pd.to_datetime(df['ts'])
 
     # Ensure all click data has a corresponding search request
-    # Drop search_result_interaction entries that don't have corresponding search_id
     if (tablename == 'search_result_interaction'):
         search_request_df = pd.read_sql(f"select * from {'search_request'}", con)
+        
+        # Drop search_result_interaction entries that don't have corresponding search_id
         df = pd.merge(search_request_df, df, on='search_id')
+        
+        # Check if all click data has corresponding search id
+        search_request_ids = search_request_df['search_ids'].tolist()
+        df_ids = df['search_ids'].tolist()
+        ids_intersect = [id for id in search_request_ids if id in df_ids]
+        if (len(ids_intersect) != len(df_ids)):
+            logging.error("All click data does not have a search request")
+        else:
+            logging.info("All click data has a corresponding search request")
+        if(len(search_request_ids) > len(ids_intersect)):
+            logging.info("There were more search requests than clicked on data")
+
+    # Display columns in each dataframe
+    cols_cleaned = list(df.columns)
+    logging.info(tablename, ": Columns: ", cols_cleaned)
+    
+    # Check if there are any duplicate entries
+    if (df.duplicated().any()):
+        logging.error("Duplicate entries in: ", tablename)
+    # Check if original columns are in tact
+    cols_intersect = [value for value in cols_before if value in cols_cleaned]
+    if (len(cols_intersect) != len(cols_before)):
+        logging.error("Original columns are not in tact in: ", tablename)
     
     # Replace the table with a cleaned version
-    print(df)
     df.to_sql(f'clean_{tablename}', con, if_exists='replace', index=False)
         
 for table in tables:
