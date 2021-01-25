@@ -124,15 +124,17 @@ def clean_data_df(tablename: str):
     df['ts'] = pd.to_datetime(df['ts'])
 
     # Ensure all click data has a corresponding search request
-    if (tablename == 'search_result_interaction'):
+    if ((tablename) == 'search_result_interaction'):
         search_request_df = pd.read_sql(f"select * from {'search_request'}", con)
         
         # Drop search_result_interaction entries that don't have corresponding search_id
         df = pd.merge(search_request_df, df, on='search_id')
-        
+        df = df.drop(junk_columns, axis=1)
+        df = df.rename(columns={"ts_x": "ts_request", "ts_y": "ts"})
+
         # Check if all click data has corresponding search id
-        search_request_ids = search_request_df['search_ids'].tolist()
-        df_ids = df['search_ids'].tolist()
+        search_request_ids = search_request_df['search_id'].tolist()
+        df_ids = df['search_id'].tolist()
         ids_intersect = [id for id in search_request_ids if id in df_ids]
         if (len(ids_intersect) != len(df_ids)):
             logging.error("All click data does not have a search request")
@@ -143,15 +145,20 @@ def clean_data_df(tablename: str):
 
     # Display columns in each dataframe
     cols_cleaned = list(df.columns)
-    logging.info(tablename, ": Columns: ", cols_cleaned)
+    cols_str = ' ,'.join(str(column) for column in cols_cleaned)
+    #logging.info("Columns: ", str(cols_str))
     
     # Check if there are any duplicate entries
     if (df.duplicated().any()):
-        logging.error("Duplicate entries in: ", tablename)
+        logging.error("There are duplicate entries")
+    else:
+        logging.info("There are no duplicate entries")
     # Check if original columns are in tact
     cols_intersect = [value for value in cols_before if value in cols_cleaned]
     if (len(cols_intersect) != len(cols_before)):
-        logging.error("Original columns are not in tact in: ", tablename)
+        logging.error("Original columns are not in tact")
+    else:
+        logging.info("All original columns are in tact")
     
     # Replace the table with a cleaned version
     df.to_sql(f'clean_{tablename}', con, if_exists='replace', index=False)
