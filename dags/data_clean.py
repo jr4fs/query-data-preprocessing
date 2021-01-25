@@ -111,6 +111,21 @@ def clean_data_df(tablename: str):
     junk_columns = df.columns[df.columns.str.startswith('Unnamed')]
     df = df.drop(junk_columns, axis=1)
     
+    # Check if there are duplicate search ids, these are the
+        # entries that need to be dropped to remove duplicates
+    duplicate_search_id = df['search_id'].dupilcated().any()
+    if (duplicate_search_id):
+        df = df.drop_duplicates(subset=['search_id'])
+    
+    # Convert time stamp to standardized format
+    df['ts'] = pd.to_datetime(df['ts'])
+
+    # Ensure all click data has a corresponding search request
+    # Drop search_result_interaction entries that don't have corresponding search_id
+    if (tablename == 'search_result_interaction'):
+        search_request_df = pd.read_sql(f"select * from {'search_request'}", con)
+        df = pd.merge(search_request_df, df, on='search_id')
+    
     # Replace the table with a cleaned version
     df.to_sql(f'clean_{tablename}', con, if_exists='replace', index=False)
         
