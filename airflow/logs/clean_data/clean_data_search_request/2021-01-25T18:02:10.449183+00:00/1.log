@@ -1,0 +1,17 @@
+[2021-01-25 18:02:46,517] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.clean_data_search_request 2021-01-25T18:02:10.449183+00:00 [queued]>
+[2021-01-25 18:02:46,550] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.clean_data_search_request 2021-01-25T18:02:10.449183+00:00 [queued]>
+[2021-01-25 18:02:46,551] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 18:02:46,551] {taskinstance.py:881} INFO - Starting attempt 1 of 2
+[2021-01-25 18:02:46,551] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 18:02:46,591] {taskinstance.py:901} INFO - Executing <Task(PythonOperator): clean_data_search_request> on 2021-01-25T18:02:10.449183+00:00
+[2021-01-25 18:02:46,596] {standard_task_runner.py:54} INFO - Started process 52868 to run task
+[2021-01-25 18:02:46,636] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'clean_data', 'clean_data_search_request', '2021-01-25T18:02:10.449183+00:00', '--job_id', '54', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/data_clean.py', '--cfg_path', '/tmp/tmpuzyoj7w8']
+[2021-01-25 18:02:46,640] {standard_task_runner.py:78} INFO - Job 54: Subtask clean_data_search_request
+[2021-01-25 18:02:46,715] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: clean_data.clean_data_search_request 2021-01-25T18:02:10.449183+00:00 [running]> 3f8da9634a9c
+[2021-01-25 18:02:47,266] {data_clean.py:155} INFO - There are no duplicate entries
+[2021-01-25 18:02:47,267] {data_clean.py:161} INFO - All original columns are in tact
+[2021-01-25 18:02:47,446] {python_operator.py:114} INFO - Done. Returned value was: None
+[2021-01-25 18:02:47,461] {taskinstance.py:1070} INFO - Marking task as SUCCESS.dag_id=clean_data, task_id=clean_data_search_request, execution_date=20210125T180210, start_date=20210125T180246, end_date=20210125T180247
+[2021-01-25 18:02:51,504] {local_task_job.py:102} INFO - Task exited with return code 0

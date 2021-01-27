@@ -1,0 +1,75 @@
+[2021-01-25 17:10:01,870] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.clean_data_search_request 2021-01-25T17:09:31.045821+00:00 [queued]>
+[2021-01-25 17:10:01,917] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.clean_data_search_request 2021-01-25T17:09:31.045821+00:00 [queued]>
+[2021-01-25 17:10:01,918] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 17:10:01,918] {taskinstance.py:881} INFO - Starting attempt 1 of 2
+[2021-01-25 17:10:01,919] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 17:10:01,967] {taskinstance.py:901} INFO - Executing <Task(PythonOperator): clean_data_search_request> on 2021-01-25T17:09:31.045821+00:00
+[2021-01-25 17:10:01,973] {standard_task_runner.py:54} INFO - Started process 51247 to run task
+[2021-01-25 17:10:02,006] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'clean_data', 'clean_data_search_request', '2021-01-25T17:09:31.045821+00:00', '--job_id', '34', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/data_clean.py', '--cfg_path', '/tmp/tmpv6ok1i5t']
+[2021-01-25 17:10:02,009] {standard_task_runner.py:78} INFO - Job 34: Subtask clean_data_search_request
+[2021-01-25 17:10:02,113] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: clean_data.clean_data_search_request 2021-01-25T17:09:31.045821+00:00 [running]> 3f8da9634a9c
+[2021-01-25 17:10:02,655] {logging_mixin.py:112} WARNING - --- Logging error ---
+[2021-01-25 17:10:02,657] {logging_mixin.py:112} WARNING - Traceback (most recent call last):
+[2021-01-25 17:10:02,657] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 994, in emit
+    msg = self.format(record)
+[2021-01-25 17:10:02,658] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 840, in format
+    return fmt.format(record)
+[2021-01-25 17:10:02,658] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 577, in format
+    record.message = record.getMessage()
+[2021-01-25 17:10:02,658] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 338, in getMessage
+    msg = msg % self.args
+[2021-01-25 17:10:02,659] {logging_mixin.py:112} WARNING - TypeError: not all arguments converted during string formatting
+[2021-01-25 17:10:02,659] {logging_mixin.py:112} WARNING - Call stack:
+[2021-01-25 17:10:02,666] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/bin/airflow", line 37, in <module>
+    args.func(args)
+[2021-01-25 17:10:02,667] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/utils/cli.py", line 76, in wrapper
+    return f(*args, **kwargs)
+[2021-01-25 17:10:02,667] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/bin/cli.py", line 579, in run
+    _run(args, dag, ti)
+[2021-01-25 17:10:02,668] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/bin/cli.py", line 475, in _run
+    run_job.run()
+[2021-01-25 17:10:02,668] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/jobs/base_job.py", line 218, in run
+    self._execute()
+[2021-01-25 17:10:02,669] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/jobs/local_task_job.py", line 94, in _execute
+    self.task_runner.start()
+[2021-01-25 17:10:02,669] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/task/task_runner/standard_task_runner.py", line 43, in start
+    self.process = self._start_by_fork()
+[2021-01-25 17:10:02,669] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/task/task_runner/standard_task_runner.py", line 86, in _start_by_fork
+    args.func(args, dag=self.dag)
+[2021-01-25 17:10:02,670] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/utils/cli.py", line 76, in wrapper
+    return f(*args, **kwargs)
+[2021-01-25 17:10:02,670] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/bin/cli.py", line 579, in run
+    _run(args, dag, ti)
+[2021-01-25 17:10:02,671] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/bin/cli.py", line 480, in _run
+    pool=args.pool,
+[2021-01-25 17:10:02,671] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/utils/db.py", line 74, in wrapper
+    return func(*args, **kwargs)
+[2021-01-25 17:10:02,672] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 984, in _run_raw_task
+    result = task_copy.execute(context=context)
+[2021-01-25 17:10:02,672] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python_operator.py", line 113, in execute
+    return_value = self.execute_callable()
+[2021-01-25 17:10:02,673] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python_operator.py", line 118, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+[2021-01-25 17:10:02,673] {logging_mixin.py:112} WARNING -   File "/opt/airflow/dags/data_clean.py", line 147, in clean_data_df
+    logging.info(tablename, ": Columns: ", cols_str)
+[2021-01-25 17:10:02,674] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 1902, in info
+    root.info(msg, *args, **kwargs)
+[2021-01-25 17:10:02,675] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 1308, in info
+    self._log(INFO, msg, args, **kwargs)
+[2021-01-25 17:10:02,675] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 1444, in _log
+    self.handle(record)
+[2021-01-25 17:10:02,676] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 1454, in handle
+    self.callHandlers(record)
+[2021-01-25 17:10:02,676] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 1516, in callHandlers
+    hdlr.handle(record)
+[2021-01-25 17:10:02,677] {logging_mixin.py:112} WARNING -   File "/usr/local/lib/python3.6/logging/__init__.py", line 865, in handle
+    self.emit(record)
+[2021-01-25 17:10:02,677] {logging_mixin.py:112} WARNING -   File "/home/airflow/.local/lib/python3.6/site-packages/airflow/utils/log/file_task_handler.py", line 63, in emit
+    self.handler.emit(record)
+[2021-01-25 17:10:02,678] {logging_mixin.py:112} WARNING - Message: 'search_request'
+Arguments: (': Columns: ', 'search_id ,search_query ,ts ,cuid ,total')
+[2021-01-25 17:10:02,863] {python_operator.py:114} INFO - Done. Returned value was: None
+[2021-01-25 17:10:02,879] {taskinstance.py:1070} INFO - Marking task as SUCCESS.dag_id=clean_data, task_id=clean_data_search_request, execution_date=20210125T170931, start_date=20210125T171001, end_date=20210125T171002
+[2021-01-25 17:10:06,825] {local_task_job.py:102} INFO - Task exited with return code 0

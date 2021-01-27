@@ -1,0 +1,19 @@
+[2021-01-25 21:20:47,052] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.clean_data_search_result_interaction 2021-01-25T21:20:07.801920+00:00 [queued]>
+[2021-01-25 21:20:47,098] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: clean_data.clean_data_search_result_interaction 2021-01-25T21:20:07.801920+00:00 [queued]>
+[2021-01-25 21:20:47,099] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 21:20:47,100] {taskinstance.py:881} INFO - Starting attempt 1 of 2
+[2021-01-25 21:20:47,100] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2021-01-25 21:20:47,137] {taskinstance.py:901} INFO - Executing <Task(PythonOperator): clean_data_search_result_interaction> on 2021-01-25T21:20:07.801920+00:00
+[2021-01-25 21:20:47,141] {standard_task_runner.py:54} INFO - Started process 58808 to run task
+[2021-01-25 21:20:47,174] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'clean_data', 'clean_data_search_result_interaction', '2021-01-25T21:20:07.801920+00:00', '--job_id', '60', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/data_clean.py', '--cfg_path', '/tmp/tmpuxdv3lyu']
+[2021-01-25 21:20:47,177] {standard_task_runner.py:78} INFO - Job 60: Subtask clean_data_search_result_interaction
+[2021-01-25 21:20:47,278] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: clean_data.clean_data_search_result_interaction 2021-01-25T21:20:07.801920+00:00 [running]> 3f8da9634a9c
+[2021-01-25 21:20:47,782] {data_clean.py:142} INFO - All click data has a corresponding search request
+[2021-01-25 21:20:47,783] {data_clean.py:144} INFO - There were more search requests than clicked on data
+[2021-01-25 21:20:47,790] {data_clean.py:152} INFO - There are no duplicate entries
+[2021-01-25 21:20:47,791] {data_clean.py:160} INFO - All original columns are in tact
+[2021-01-25 21:20:47,913] {python_operator.py:114} INFO - Done. Returned value was: None
+[2021-01-25 21:20:47,925] {taskinstance.py:1070} INFO - Marking task as SUCCESS.dag_id=clean_data, task_id=clean_data_search_result_interaction, execution_date=20210125T212007, start_date=20210125T212047, end_date=20210125T212047
+[2021-01-25 21:20:52,029] {local_task_job.py:102} INFO - Task exited with return code 0
